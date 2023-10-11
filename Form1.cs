@@ -61,15 +61,14 @@ namespace ConToJREts {
         private int bottonnum2_10befor;
         private int bottonnum2_100befor;
         private int bottonnum2_1000befor;
-        private IContainer components;
-        private Button button1;
+        private Button connectBtn;
+        private Button disconnectBtn;
+        private Button close;
         private Label label1;
-        private Button button3;
-        private ComboBox portList;
         private Label label2;
         private Label label3;
+        private ComboBox portList;
         private ComboBox controllerlist;
-        private Button close;
         private CheckBox buttoncheck;
         private Dictionary<string, string> keyMapping;
 
@@ -105,14 +104,14 @@ namespace ConToJREts {
             }
         }
 
-        private void connect_Click(object sender, EventArgs e) {
+        private void connectBtn_Click(object sender, EventArgs e) {
             if (this.controllerlist.SelectedIndex == 1)
                 this.TSmc2_openPort();
             if (this.controllerlist.SelectedIndex == 2)
                 this.Zuiki_open();
         }
 
-        private void disconnect_Click(object sender, EventArgs e) {
+        private void disconnectBtn_Click(object sender, EventArgs e) {
             this.TSmc2_closePort();
             this.Zuiki_close();
         }
@@ -518,9 +517,9 @@ namespace ConToJREts {
         protected override void Dispose(bool disposing) => base.Dispose(disposing);
 
         private void InitializeComponent() {
-            this.button1 = new System.Windows.Forms.Button();
+            this.connectBtn = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.button3 = new System.Windows.Forms.Button();
+            this.disconnectBtn = new System.Windows.Forms.Button();
             this.portList = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -531,13 +530,13 @@ namespace ConToJREts {
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(12, 13);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 25);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "Connect";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.connect_Click);
+            this.connectBtn.Location = new System.Drawing.Point(12, 13);
+            this.connectBtn.Name = "connectBtn";
+            this.connectBtn.Size = new System.Drawing.Size(75, 25);
+            this.connectBtn.TabIndex = 0;
+            this.connectBtn.Text = "Connect";
+            this.connectBtn.UseVisualStyleBackColor = true;
+            this.connectBtn.Click += new System.EventHandler(this.connectBtn_Click);
             // 
             // label1
             // 
@@ -549,13 +548,13 @@ namespace ConToJREts {
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(12, 44);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(75, 25);
-            this.button3.TabIndex = 7;
-            this.button3.Text = "Disconnect";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.disconnect_Click);
+            this.disconnectBtn.Location = new System.Drawing.Point(12, 44);
+            this.disconnectBtn.Name = "disconnectBtn";
+            this.disconnectBtn.Size = new System.Drawing.Size(75, 25);
+            this.disconnectBtn.TabIndex = 7;
+            this.disconnectBtn.Text = "Disconnect";
+            this.disconnectBtn.UseVisualStyleBackColor = true;
+            this.disconnectBtn.Click += new System.EventHandler(this.disconnectBtn_Click);
             // 
             // portList
             // 
@@ -628,9 +627,9 @@ namespace ConToJREts {
             this.Controls.Add(this.controllerlist);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.portList);
-            this.Controls.Add(this.button3);
+            this.Controls.Add(this.disconnectBtn);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.connectBtn);
             this.Name = "Form1";
             this.Text = "ConToJREts";
             this.Load += new System.EventHandler(this.Form1_Load);
