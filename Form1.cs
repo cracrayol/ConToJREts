@@ -114,6 +114,8 @@ namespace ConToJREts {
         private void disconnectBtn_Click(object sender, EventArgs e) {
             this.TSmc2_closePort();
             this.Zuiki_close();
+            this.disconnectBtn.Enabled = false;
+            this.connectBtn.Enabled = true;
         }
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e) {
@@ -152,6 +154,8 @@ namespace ConToJREts {
             this.IsDisposing = false;
             this.controllerlist.Enabled = false;
             this.portList.Enabled = false;
+            this.disconnectBtn.Enabled = true;
+            this.connectBtn.Enabled = false;
             new Thread((ThreadStart)(() => {
                 while (!this.IsDisposing)
                     this.TSmc2Loop();
@@ -315,6 +319,8 @@ namespace ConToJREts {
                 this.label1.Text = "Connected";
                 this.controllerlist.Enabled = false;
                 this.portList.Enabled = false;
+                this.disconnectBtn.Enabled = true;
+                this.connectBtn.Enabled = false;
 
                 this.keyMapping = new Dictionary<string, string>();
                 var iniFile = new IniFile("key.ini");
@@ -555,6 +561,7 @@ namespace ConToJREts {
             this.disconnectBtn.Text = "Disconnect";
             this.disconnectBtn.UseVisualStyleBackColor = true;
             this.disconnectBtn.Click += new System.EventHandler(this.disconnectBtn_Click);
+            this.disconnectBtn.Enabled = false;
             // 
             // portList
             // 
