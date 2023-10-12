@@ -91,7 +91,7 @@ Thank you very much.
 
 ## Update History
 
-2022/09/20	Published 
+2022/09/20	Published
 　18:00　		Update: change button setting
 　18:50			Update: change the button setting again.
 2022/09/21	Update
