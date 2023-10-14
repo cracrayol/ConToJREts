@@ -70,6 +70,7 @@ namespace ConToJREts {
         private ComboBox portList;
         private ComboBox controllerlist;
         private CheckBox buttoncheck;
+        private CheckBox arrowcheck;
         private Dictionary<string, string> keyMapping;
 
         public Form1() => this.InitializeComponent();
@@ -91,16 +92,19 @@ namespace ConToJREts {
                 this.label2.Text = "";
                 this.portList.Visible = false;
                 this.buttoncheck.Visible = false;
+                this.arrowcheck.Visible = false;
             }
             if (this.controllerlist.SelectedIndex == 1) {
                 this.label2.Text = "Port : ";
                 this.portList.Visible = true;
                 this.buttoncheck.Visible = false;
+                this.arrowcheck.Visible = false;
             }
             if (this.controllerlist.SelectedIndex == 2) {
                 this.label2.Text = "";
                 this.portList.Visible = false;
                 this.buttoncheck.Visible = true;
+                this.arrowcheck.Visible = true;
             }
         }
 
@@ -419,7 +423,7 @@ namespace ConToJREts {
                 Form1.NativeMethods.SendInput(1, ref pInputs, Marshal.SizeOf<INPUT>(pInputs));
             }
             this.notchbefor = this.notchnow;
-            if ((int)this.Zuiki_rebbefor != (int)this.Zuiki_readBuffer[2]) {
+            if (!this.arrowcheck.Checked && (int)this.Zuiki_rebbefor != (int)this.Zuiki_readBuffer[2]) {
                 if (this.Zuiki_readBuffer[2] == (byte)0)
                     SendKeys.SendWait(this.keyMapping["UP"]);
                 if (this.Zuiki_readBuffer[2] == (byte)4)
@@ -532,9 +536,10 @@ namespace ConToJREts {
             this.controllerlist = new System.Windows.Forms.ComboBox();
             this.close = new System.Windows.Forms.Button();
             this.buttoncheck = new System.Windows.Forms.CheckBox();
+            this.arrowcheck = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
-            // button1
+            // connectBtn
             // 
             this.connectBtn.Location = new System.Drawing.Point(12, 13);
             this.connectBtn.Name = "connectBtn";
@@ -552,8 +557,9 @@ namespace ConToJREts {
             this.label1.Size = new System.Drawing.Size(0, 13);
             this.label1.TabIndex = 2;
             // 
-            // button3
+            // disconnectBtn
             // 
+            this.disconnectBtn.Enabled = false;
             this.disconnectBtn.Location = new System.Drawing.Point(12, 44);
             this.disconnectBtn.Name = "disconnectBtn";
             this.disconnectBtn.Size = new System.Drawing.Size(75, 25);
@@ -561,7 +567,6 @@ namespace ConToJREts {
             this.disconnectBtn.Text = "Disconnect";
             this.disconnectBtn.UseVisualStyleBackColor = true;
             this.disconnectBtn.Click += new System.EventHandler(this.disconnectBtn_Click);
-            this.disconnectBtn.Enabled = false;
             // 
             // portList
             // 
@@ -615,12 +620,22 @@ namespace ConToJREts {
             // buttoncheck
             // 
             this.buttoncheck.AutoSize = true;
-            this.buttoncheck.Location = new System.Drawing.Point(181, 81);
+            this.buttoncheck.Location = new System.Drawing.Point(213, 81);
             this.buttoncheck.Name = "buttoncheck";
             this.buttoncheck.Size = new System.Drawing.Size(99, 17);
             this.buttoncheck.TabIndex = 51;
             this.buttoncheck.Text = "Disable buttons";
             this.buttoncheck.UseVisualStyleBackColor = true;
+            // 
+            // arrowcheck
+            // 
+            this.arrowcheck.AutoSize = true;
+            this.arrowcheck.Location = new System.Drawing.Point(113, 81);
+            this.arrowcheck.Name = "arrowcheck";
+            this.arrowcheck.Size = new System.Drawing.Size(94, 17);
+            this.arrowcheck.TabIndex = 52;
+            this.arrowcheck.Text = "Disable D-Pad";
+            this.arrowcheck.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
@@ -629,6 +644,7 @@ namespace ConToJREts {
             this.ClientSize = new System.Drawing.Size(422, 159);
             this.ControlBox = false;
             this.Controls.Add(this.buttoncheck);
+            this.Controls.Add(this.arrowcheck);
             this.Controls.Add(this.close);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.controllerlist);
