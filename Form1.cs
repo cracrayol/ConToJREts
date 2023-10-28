@@ -72,6 +72,7 @@ namespace ConToJREts {
         private CheckBox buttoncheck;
         private CheckBox arrowcheck;
         private Dictionary<string, string> keyMapping;
+        private IniFile iniFile;
 
         public Form1() => this.InitializeComponent();
 
@@ -85,6 +86,7 @@ namespace ConToJREts {
             this.controllerlist.SelectedIndex = 0;
             this.controllerlist.Enabled = true;
             this.portList.Visible = false;
+            this.iniFile = new IniFile("key.ini");
         }
 
         private void controllerlist_SelectedIndexChanged(object sender, EventArgs e) {
@@ -105,6 +107,8 @@ namespace ConToJREts {
                 this.portList.Visible = false;
                 this.buttoncheck.Visible = true;
                 this.arrowcheck.Visible = true;
+                this.arrowcheck.Checked = this.iniFile.Read("DISABLE_DPAD", "ZUIKI") == "1";
+                this.buttoncheck.Checked = this.iniFile.Read("DISABLE_BUTTONS", "ZUIKI") == "1";
             }
         }
 
@@ -148,11 +152,10 @@ namespace ConToJREts {
                 return;
 
             this.keyMapping = new Dictionary<string, string>();
-            var iniFile = new IniFile("key.ini");
-            this.keyMapping.Add("A", iniFile.Read("A", "MASCON2"));
-            this.keyMapping.Add("B", iniFile.Read("B", "MASCON2"));
-            this.keyMapping.Add("C", iniFile.Read("C", "MASCON2"));
-            this.keyMapping.Add("S", iniFile.Read("S", "MASCON2"));
+            this.keyMapping.Add("A", this.iniFile.Read("A", "MASCON2"));
+            this.keyMapping.Add("B", this.iniFile.Read("B", "MASCON2"));
+            this.keyMapping.Add("C", this.iniFile.Read("C", "MASCON2"));
+            this.keyMapping.Add("S", this.iniFile.Read("S", "MASCON2"));
 
             this.label1.Text = "Connected";
             this.IsDisposing = false;
@@ -327,24 +330,22 @@ namespace ConToJREts {
                 this.connectBtn.Enabled = false;
 
                 this.keyMapping = new Dictionary<string, string>();
-                var iniFile = new IniFile("key.ini");
-                this.keyMapping.Add("UP", iniFile.Read("UP", "ZUIKI"));
-                this.keyMapping.Add("DOWN", iniFile.Read("DOWN", "ZUIKI"));
-                this.keyMapping.Add("LEFT", iniFile.Read("LEFT", "ZUIKI"));
-                this.keyMapping.Add("RIGHT", iniFile.Read("RIGHT", "ZUIKI"));
-                this.keyMapping.Add("A", iniFile.Read("A", "ZUIKI"));
-                this.keyMapping.Add("B", iniFile.Read("B", "ZUIKI"));
-                this.keyMapping.Add("X", iniFile.Read("X", "ZUIKI"));
-                this.keyMapping.Add("Y", iniFile.Read("Y", "ZUIKI"));
-                this.keyMapping.Add("L", iniFile.Read("L", "ZUIKI"));
-                this.keyMapping.Add("R", iniFile.Read("R", "ZUIKI"));
-                this.keyMapping.Add("ZL", iniFile.Read("ZL", "ZUIKI"));
-                this.keyMapping.Add("ZR", iniFile.Read("ZR", "ZUIKI"));
-                this.keyMapping.Add("PLUS", iniFile.Read("PLUS", "ZUIKI"));
-                this.keyMapping.Add("MINUS", iniFile.Read("MINUS", "ZUIKI"));
-                this.keyMapping.Add("HOME", iniFile.Read("HOME", "ZUIKI"));
-                this.keyMapping.Add("CAPTURE", iniFile.Read("CAPTURE", "ZUIKI"));
-
+                this.keyMapping.Add("UP", this.iniFile.Read("UP", "ZUIKI"));
+                this.keyMapping.Add("DOWN", this.iniFile.Read("DOWN", "ZUIKI"));
+                this.keyMapping.Add("LEFT", this.iniFile.Read("LEFT", "ZUIKI"));
+                this.keyMapping.Add("RIGHT", this.iniFile.Read("RIGHT", "ZUIKI"));
+                this.keyMapping.Add("A", this.iniFile.Read("A", "ZUIKI"));
+                this.keyMapping.Add("B", this.iniFile.Read("B", "ZUIKI"));
+                this.keyMapping.Add("X", this.iniFile.Read("X", "ZUIKI"));
+                this.keyMapping.Add("Y", this.iniFile.Read("Y", "ZUIKI"));
+                this.keyMapping.Add("L", this.iniFile.Read("L", "ZUIKI"));
+                this.keyMapping.Add("R", this.iniFile.Read("R", "ZUIKI"));
+                this.keyMapping.Add("ZL", this.iniFile.Read("ZL", "ZUIKI"));
+                this.keyMapping.Add("ZR", this.iniFile.Read("ZR", "ZUIKI"));
+                this.keyMapping.Add("PLUS", this.iniFile.Read("PLUS", "ZUIKI"));
+                this.keyMapping.Add("MINUS", this.iniFile.Read("MINUS", "ZUIKI"));
+                this.keyMapping.Add("HOME", this.iniFile.Read("HOME", "ZUIKI"));
+                this.keyMapping.Add("CAPTURE", this.iniFile.Read("CAPTURE", "ZUIKI"));
             } else {
                 int num = (int)MessageBox.Show("Device Not Found.");
             }
