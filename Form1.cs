@@ -627,6 +627,9 @@ namespace ConToJREts {
             this.buttoncheck.TabIndex = 51;
             this.buttoncheck.Text = "Disable buttons";
             this.buttoncheck.UseVisualStyleBackColor = true;
+            this.buttoncheck.CheckedChanged += new System.EventHandler((object sender, EventArgs e) => {
+                this.iniFile.Write("DISABLE_BUTTONS", this.buttoncheck.Checked ? "1" : "0", "ZUIKI");
+            });
             // 
             // arrowcheck
             // 
@@ -637,6 +640,9 @@ namespace ConToJREts {
             this.arrowcheck.TabIndex = 52;
             this.arrowcheck.Text = "Disable D-Pad";
             this.arrowcheck.UseVisualStyleBackColor = true;
+            this.arrowcheck.CheckedChanged += new System.EventHandler((object sender, EventArgs e) => {
+                this.iniFile.Write("DISABLE_DPAD", this.arrowcheck.Checked ? "1" : "0", "ZUIKI");
+            });
             // 
             // Form1
             // 
