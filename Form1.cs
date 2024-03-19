@@ -318,6 +318,11 @@ namespace ConToJREts {
                 this.ProductId = 2;
                 this._device = HidDevices.Enumerate(this.VendorId, this.ProductId).FirstOrDefault<HidDevice>();
             }
+            if (this._device == null) {
+                this.VendorId = 13277;
+                this.ProductId = 4;
+                this._device = HidDevices.Enumerate(this.VendorId, this.ProductId).FirstOrDefault<HidDevice>();
+            }
             if (this._device != null) {
                 this._device.OpenDevice();
                 this._device.MonitorDeviceEvents = true;
@@ -627,9 +632,7 @@ namespace ConToJREts {
             this.buttoncheck.TabIndex = 51;
             this.buttoncheck.Text = "Disable buttons";
             this.buttoncheck.UseVisualStyleBackColor = true;
-            this.buttoncheck.CheckedChanged += new System.EventHandler((object sender, EventArgs e) => {
-                this.iniFile.Write("DISABLE_BUTTONS", this.buttoncheck.Checked ? "1" : "0", "ZUIKI");
-            });
+            this.buttoncheck.CheckedChanged += new System.EventHandler(this.buttoncheck_CheckedChanged);
             // 
             // arrowcheck
             // 
@@ -640,9 +643,7 @@ namespace ConToJREts {
             this.arrowcheck.TabIndex = 52;
             this.arrowcheck.Text = "Disable D-Pad";
             this.arrowcheck.UseVisualStyleBackColor = true;
-            this.arrowcheck.CheckedChanged += new System.EventHandler((object sender, EventArgs e) => {
-                this.iniFile.Write("DISABLE_DPAD", this.arrowcheck.Checked ? "1" : "0", "ZUIKI");
-            });
+            this.arrowcheck.CheckedChanged += new System.EventHandler(this.arrowcheck_CheckedChanged);
             // 
             // Form1
             // 
@@ -691,6 +692,14 @@ namespace ConToJREts {
 
             [DllImport("user32.dll")]
             public static extern void SendInput(int nInputs, ref INPUT pInputs, int cbsize);
+        }
+
+        private void arrowcheck_CheckedChanged(object sender, EventArgs e) {
+            this.iniFile.Write("DISABLE_DPAD", this.arrowcheck.Checked ? "1" : "0", "ZUIKI");
+        }
+
+        private void buttoncheck_CheckedChanged(object sender, EventArgs e) {
+            this.iniFile.Write("DISABLE_BUTTONS", this.buttoncheck.Checked ? "1" : "0", "ZUIKI");
         }
     }
 }
