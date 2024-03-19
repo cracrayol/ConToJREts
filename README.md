@@ -76,8 +76,9 @@ Right click on Start → Device Manager → Right click on HID compliant game co
 → Details → Second row of "Hardware ID" in the Properties column
 
 "HID\VID_0F0D&PID_00C1"
-"HID\VID_33DD&PID_0001" "HID\VID_33DD&PID_0001"
+"HID\VID_33DD&PID_0001"
 "HID\VID_33DD&PID_0002"
+"HID\VID_33DD&PID_0004"
 
 If you have a ZUIKI controller with different numbers, please report it.
 
@@ -100,6 +101,7 @@ Thank you very much.
 2022/11/16	Update: added disable buttons function
 2023/02/21	Update
 2023/10/12	Update: English traslation, customizable key binding
+2024/03/19	Add new Zuiki hardware ID (PID 4)
 
 Created by Saha209(@saha209_ura)wagashi.209@gmail.com
 Updated by cracrayol (Fediverse: @cracrayol@friendica.cracrayol.org / BS: @cracrayol.org)
