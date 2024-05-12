@@ -82,8 +82,7 @@ namespace ConToJREts {
                 this.portList.Items.Add((object)("COM" + index.ToString()));
             this.controllerlist.Items.Add((object)"Not selected");
             this.controllerlist.Items.Add((object)"TS MasCon 2");
-            this.controllerlist.Items.Add((object)"ZKNS-001");
-            this.controllerlist.Items.Add((object)"ZKNS-011");
+            this.controllerlist.Items.Add((object)"Zuiki MasCon");
             this.controllerlist.SelectedIndex = 0;
             this.controllerlist.Enabled = true;
             this.portList.Visible = false;
@@ -117,8 +116,6 @@ namespace ConToJREts {
             if (this.controllerlist.SelectedIndex == 1)
                 this.TSmc2_openPort();
             if (this.controllerlist.SelectedIndex == 2)
-                this.Zuiki_open();
-            if (this.controllerlist.SelectedIndex == 3)
                 this.Zuiki_open();
         }
 
@@ -323,12 +320,12 @@ namespace ConToJREts {
             }
             if (this._device == null) {
                 this.VendorId = 13277;
-                this.ProductId = 4;
+                this.ProductId = 3;
                 this._device = HidDevices.Enumerate(this.VendorId, this.ProductId).FirstOrDefault<HidDevice>();
             }
             if (this._device == null) {
                 this.VendorId = 13277;
-                this.ProductId = 3;
+                this.ProductId = 4;
                 this._device = HidDevices.Enumerate(this.VendorId, this.ProductId).FirstOrDefault<HidDevice>();
             }
             if (this._device != null) {
