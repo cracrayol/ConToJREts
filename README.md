@@ -1,4 +1,4 @@
-**Note** : This program is, somehow, deprecated. Please now use this one, as it has better support for upcoming hardware and support long key press : https://github.com/cracrayol/ZUIKI_to_JRE
+**Note** : If you have a Zuiki MasCon, this program is, somehow, deprecated. Please now use this one, as it has better support for upcoming hardware and support long key press : https://github.com/cracrayol/ZUIKI_to_JRE
 
 # ConToJREts
 
